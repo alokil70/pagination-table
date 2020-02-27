@@ -1,28 +1,37 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div id="app">
+        <Table
+                v-if="tableData"
+                :data='tableData'
+                :config="tableConfig"
+        />
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import Table from './components/Table'
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'App',
+        components: {
+            Table
+        },
+        data: () => ({
+            tableData: undefined,
+            tableConfig: [
+                {key: "img", value: "Image"},
+                {key: "name", value: "Name"},
+                {key: "description", value: "Desc"},
+                {key: "category", value: "Category"},
+                {key: "price", value: "Price"},
+            ]
+        }),
+        mounted() {
+            this.$axios.get('http://localhost:9090/api/products')
+                .then(data => this.tableData = data.data)
+        }
+    }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
