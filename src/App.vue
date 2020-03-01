@@ -4,6 +4,7 @@
                 v-if="tableData"
                 :data='tableData'
                 :config="tableConfig"
+                :style="{height: '200px'}"
         />
     </div>
 </template>
@@ -19,11 +20,12 @@
         data: () => ({
             tableData: undefined,
             tableConfig: [
-                {key: "img", value: "Image"},
-                {key: "name", value: "Name"},
-                {key: "description", value: "Desc"},
-                {key: "category", value: "Category"},
-                {key: "price", value: "Price"},
+                {key: "imageName", value: "Image"},
+                {key: "productName", value: "Name"},
+                {key: "description", value: "Description"},
+                {key: "Category", value: "Category"},
+                {key: "createdAt", value: "Created"},
+                {key: "price", value: "Price"}
             ]
         }),
         mounted() {
